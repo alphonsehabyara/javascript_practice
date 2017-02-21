@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> JavaScript exercises </title>
+</head>
+<body>
+
+  <h1>Take A Guess</h1>
+
+  <fieldset>
+    <p>Welcome to the Guessing Number Game. To get trophy, you will have to guess a correct number between 1 and 100 within only ten tries. Good Luck!!.</p>
+    <input type="text" id="guessInput" placeholder=" Guess 1 thru 100 "><br>
+     <button onclick="checkGuess();">Guess</button>
+     <button onclick="clearFields();">Reset</button>    
+   </fieldset>
+   <fieldset>
+    <p>Your current status:</p>
+    <output id="status_output">You have yet to guess anything.</output>    
+  </fieldset> 
+
+  <script type="text/javascript">
+
+  // var petAnimals = ["Cats", "Dogs", "Capybara"]
+  // petAnimals.push("Comstock")
+  // console.log(petAnimals)
+  // console.log(petAnimals.slice(-1)[0]); // if searched out of the length, the gets returned "undefined"
+
+  // // must read
+  // books = [
+  //   {
+  //     title: "In Search of Lost Time",
+  //     author: "Marcel Proust",
+  //     isbn: "978-0375751547",
+  //     pages: 606,
+  //     publication_year: 1998
+  //   },
+  //   {
+  //     title: "Hamlet",
+  //     author: "William Shakespeare",
+  //     isbn: "978-0743477123",
+  //     pages: 324,
+  //     publication_year: 2003
+  //   }
+  // ];
+  // books.push(
+  //   {
+  //     title: "The Divine Comedy",
+  //     author: "Dante Alighieri",
+  //     isbn: "978-0451208637",
+  //     pages: 928,
+  //     publication_year: 2003
+  //   }
+  // );
+  // console.log(books);
+
+
+  // Countdown and stops running when i is less or equal to zero
+  // for (var i = 10; i > 0;i--) {
+  //   console.log(i);
+  // }
+  // console.log("BRASTOFF");
+
+  // var numbers = [5, 23, 98, 234, 1, 0, 3, 177];
+  
+  // // Printing each number is the above array
+  // numbers.forEach(function(integer) {
+  //   console.log(integer);
+  // });
+  // nber_lenght = console.log(numbers.length)
+
+  // // Sum and average
+  // var sum = 0;
+  // for( var i = 0; i < numbers.length; i++ ){
+  //   sum += parseInt( numbers[i]); 
+  // }
+  // var avg = sum/numbers.length;
+  // console.log( "Sum total is " + sum + " with an average of " + avg );
+
+  // // FizzBuzz
+  // for (var i = 1; i <= 100; i++) {
+  //   var numbers = i % 3 == 0, nbers = i % 5 == 0;
+  //   console.log(numbers ? nbers ? "FizzBuzz" : "Fizz" : nbers ? "Buzz" : i);
+  // }
+
+  // guess numbers 
+  var randomNumber = Math.floor(Math.random() * 100) + 1;
+  var statusOutput = document.getElementById('status_output');
+  var guessInput = document.getElementById('guessInput');
+  var counter = 0;
+  function checkGuess() {
+    var guessVal = parseInt(guessInput.value);
+    if (counter < 10 && guessVal) {
+      counter++;
+      if (guessVal < randomNumber) {
+        statusOutput.value = "Your guess is low! Try again!";
+      }
+      if (guessVal > randomNumber) {
+        statusOutput.value = "Your guess is high! Try again.";
+      }
+      if (guessVal === randomNumber) {
+        statusOutput.value = "Congrats!!!!" + " " + randomNumber +" " + "is correct and you won!!!!!!!"
+        +  " It took you " + counter + " tries to get it right!";
+      }
+    }
+    else if (counter === 10) {
+      statusOutput.value = "Your trials are over and you did get the number correct! The number was " + randomNumber +"." + "Feel free to reflesh the page and start-over";
+    }
+      return false;
+    }  
+    function clearFields() {
+    guessInput.value = "";
+    counter = 0;
+    statusOutput.value = "You stack to guess correct number.";
+    randomNumber = Math.floor(Math.random() * 100) + 1;
+    return false;
+  }
+
+</script>
+</body>
+</html>
